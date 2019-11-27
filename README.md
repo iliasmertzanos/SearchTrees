@@ -3,7 +3,7 @@
 ## Implementation of a AVL and basic search tree algorithm
 
 The java code comes were developed during my master degree studies within a project team. 
-It can be tested using the main method of the class 'SearchTreeTest' in the src folder .
+It can be tested using the main method of the class `SearchTreeTest` in the src folder .
 
 Please read the usage of test class:
 
