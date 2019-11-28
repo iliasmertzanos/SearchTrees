@@ -65,9 +65,9 @@ public class AVLTree<T> extends SearchTree<T> implements TraversableSortedContai
 		 */
 		public String toString() { 
 			
-			return "Wert = " + getData() + ", Balance = " + getBalance() + ", Parent = " + ((getParent() != null) ? getParent().getData() : "nicht vorhanden")
+			return "Value = " + getData() + ", Balance = " + getBalance() + ", Parent = " + ((getParent() != null) ? getParent().getData() : "doesn't exists")
                     + ", LeftChild = " + ((getLeftChild() != null) ? getLeftChild().getData() : "nicht vorhanden") + ", RightChild = "
-                    + ((getRightChild() != null) ? getRightChild().getData() : "nicht vorhanden");
+                    + ((getRightChild() != null) ? getRightChild().getData() : "doesn't exists");
 		}
 	}
 	

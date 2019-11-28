@@ -89,16 +89,16 @@ public class SearchTreeTest
 		System.out.println(   "usage: SearchTreeTest [-[a|b][v][d]] <numElements> <access>") ;
 		System.out.println(   "       Insert <numElements> elements in search tree, access them <access> times");
 		System.out.println(   "       and then remove them (all in randomized order)." ) ;
-		    System.out.println(   "       <numElements> : number of elements to insert into tree; must be <= 100000");
-		    System.out.println(   "       <access>      : number of requests for a tree element before it is removed" ) ;
-		    System.out.println(   "options:");
-		    System.out.println(   "       a : use AVLTree (default)"     ) ;
-		    System.out.println(   "       b : use SearchTree"  ) ;
-		    System.out.println(   "       d : debug mode; after each insert/remove, search tree property is checked");
-		    System.out.println(   "           by traversal; if an AVLTree is used, balance property is checked too;");
-		    System.out.println(   "           Additionally, maximum size and height of tree are calculated;");
-		    System.out.println(   "           CAUTION: may be equally slow with option a and b for large instances");
-		    System.out.println(   "       v : verbose mode; search tree is output after each insert/remove" ) ;
+	    System.out.println(   "       <numElements> : number of elements to insert into tree; must be <= 100000");
+	    System.out.println(   "       <access>      : number of requests for a tree element before it is removed" ) ;
+	    System.out.println(   "options:");
+	    System.out.println(   "       a : use AVLTree (default)"     ) ;
+	    System.out.println(   "       b : use SearchTree"  ) ;
+	    System.out.println(   "       d : debug mode; after each insert/remove, search tree property is checked");
+	    System.out.println(   "           by traversal; if an AVLTree is used, balance property is checked too;");
+	    System.out.println(   "           Additionally, maximum size and height of tree are calculated;");
+	    System.out.println(   "           CAUTION: may be equally slow with option a and b for large instances");
+	    System.out.println(   "       v : verbose mode; search tree is output after each insert/remove" ) ;
     }
 	    
     static void testTree(int numElements, int maxAccess) {
@@ -184,41 +184,41 @@ public class SearchTreeTest
 			    tok = (Counter)sCont.remove(tok) ;
 			    nRemove++;
 			    if(verbose) {
-				System.out.println("\n* Removed "+tok );
-				System.out.println("* New tree: ");
-				System.out.print(sCont);
+					System.out.println("\n* Removed "+tok );
+					System.out.println("* New tree: ");
+					System.out.print(sCont);
 			    }
 			    if(debug) {
-				if(verbose)
-				    System.out.print("** Checking search tree property...");
-				long last = 0;
-				for(sCont.reset();!sCont.isAtEnd();sCont.increment()) {
-				    long curr = ((Counter)sCont.currentData()).conn;
-				    if(curr < last) {
-					System.out.println((verbose ? " failed: " : "** Check of search property failed: ")+ curr+" < "+last);
-					System.out.println("** Exiting...");
-					return;
-				    }
-				}
-				if(verbose)
-				    System.out.println(" ok");
-				if(mode==AVL) {
-				    if(verbose)
-					System.out.print("** Checking balance property...");
-				    if(!((AVLTree)sCont).checkBalances()) {
-					System.out.println((verbose ? " failed." : "** Check of balance property failed."));
-					System.out.println("** Exiting...");
-					return;
-				    }
-				    if(verbose)
-					System.out.println(" ok");
-				}
+					if(verbose)
+					    System.out.print("** Checking search tree property...");
+					long last = 0;
+					for(sCont.reset();!sCont.isAtEnd();sCont.increment()) {
+					    long curr = ((Counter)sCont.currentData()).conn;
+					    if(curr < last) {
+						System.out.println((verbose ? " failed: " : "** Check of search property failed: ")+ curr+" < "+last);
+						System.out.println("** Exiting...");
+						return;
+					    }
+					}
+					if(verbose)
+					    System.out.println(" ok");
+					if(mode==AVL) {
+					    if(verbose)
+						System.out.print("** Checking balance property...");
+					    if(!((AVLTree)sCont).checkBalances()) {
+						System.out.println((verbose ? " failed." : "** Check of balance property failed."));
+						System.out.println("** Exiting...");
+						return;
+					    }
+					    if(verbose)
+						System.out.println(" ok");
+					}
 			    }
 			    
 			    ++( tok.count ) ;
 		   
 			}      // else ( conn > 0 )
-		    }          // while ( 0 != ( conn = traffic.nextToken() ) ) 
+	    }          // while ( 0 != ( conn = traffic.nextToken() ) ) 
 		
 		time = System.currentTimeMillis() - time ;
 		
@@ -288,30 +288,30 @@ public class SearchTreeTest
 		{
 	
 		    if ( ++_ncall % 2 == 0 )
-			conn = _active[ _rand.nextInt( _nactive ) ] ;
+		    	conn = _active[ _rand.nextInt( _nactive ) ] ;
 		    else
-			conn = _mconn + _rand.nextInt( _connwin ) + 1 ;
+		    	conn = _mconn + _rand.nextInt( _connwin ) + 1 ;
 	
 	
 		    if ( _remAcs[ conn ] == 0 )                         
-	            {
-			++_mconn ;              
-	
-			_remAcs [  conn      ] =  _maxAccess;
-			_active[ _nactive++ ] = conn ;               
+            {
+				++_mconn ;              
+		
+				_remAcs [  conn      ] =  _maxAccess;
+				_active[ _nactive++ ] = conn ;               
 		    }
 	
 	
 		    else if ( --_remAcs[ conn ] == 0 )           
 		    {
-			for ( int iact = 0 ;  iact < _nactive ;  ++iact )
-			    if ( _active[ iact ] == conn )
-			    {
-				_active[ iact ] = _active[ --_nactive ] ;
-				break ;
-			    }
-	
-			conn = -conn ;                   
+				for ( int iact = 0 ;  iact < _nactive ;  ++iact )
+				    if ( _active[ iact ] == conn )
+				    {
+						_active[ iact ] = _active[ --_nactive ] ;
+						break ;
+				    }
+		
+					conn = -conn ;                   
 		    }
 		} 
         return ( conn > 0  ?  (int)(conn - 1) + 3
